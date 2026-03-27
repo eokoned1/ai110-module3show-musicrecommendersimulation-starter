@@ -1,10 +1,12 @@
 # 🎵 Music Recommender Simulation
 
+Prepared in a Teaching Fellow (TF) role for Week 6 recommendation-system support and evaluation.
+
 ## Project Summary
 
-This project implements a rule-based music recommender that ranks songs from a small catalog using user taste preferences. Each song has structured features (genre, mood, energy, tempo, valence, danceability, acousticness), and each user profile specifies target preferences (favorite genre, favorite mood, target energy, and whether the user likes acoustic songs).
+As a TF, I implemented a rule-based music recommender that ranks songs from a small catalog using user taste preferences. Each song has structured features (genre, mood, energy, tempo, valence, danceability, acousticness), and each user profile specifies target preferences (favorite genre, favorite mood, target energy, and whether the user likes acoustic songs).
 
-The recommender computes a score for every song, sorts by score, and returns the top k results with short natural-language explanations. This makes the system easy to inspect and helps show how real recommender behavior can emerge from simple weighted decisions.
+The recommender computes a score for every song, sorts by score, and returns the top k results with short natural-language explanations. I focused on making the logic transparent for TF grading and student debugging.
 
 ---
 
@@ -85,7 +87,7 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Experiments You Tried
 
-I tested multiple user profiles to see whether recommendations changed in intuitive ways.
+As a TF, I tested multiple user profiles to verify that recommendations changed in intuitive ways.
 
 ### Baseline Profile (Pop + Happy)
 
@@ -162,9 +164,9 @@ This recommender is transparent and easy to inspect, but it has several limitati
 
 ## Reflection
 
-This project showed me how quickly a recommender can feel "smart" even with a simple weighted formula. By turning user preferences and song features into numbers, the system consistently produced rankings that matched intuition for different profiles. I also learned that explanation text matters because it helps verify that the model ranked songs for the reasons I expected.
+From a TF perspective, this project showed me how quickly a recommender can feel "smart" even with a simple weighted formula. By turning user preferences and song features into numbers, the system consistently produced rankings that matched intuition for different profiles. I also learned that explanation text matters because it helps verify that the model ranked songs for the reasons I expected.
 
-I also saw how bias can appear even in a small classroom simulation. If a catalog has uneven representation, users with less represented tastes get lower quality results, not because the algorithm is malicious but because the available data does not cover them well. Building and testing this made me think of recommenders as socio-technical systems where design choices, weights, and dataset composition all shape user outcomes.
+I also saw how bias can appear even in a small classroom simulation. If a catalog has uneven representation, users with less represented tastes get lower quality results, not because the algorithm is malicious but because the available data does not cover them well. Building and testing this as a TF reinforced that recommenders are socio-technical systems where design choices, weights, and dataset composition all shape user outcomes.
 
 
 ---

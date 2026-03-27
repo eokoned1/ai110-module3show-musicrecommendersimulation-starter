@@ -1,5 +1,7 @@
 # 🎧 Model Card: Music Recommender Simulation
 
+Prepared in a Teaching Fellow (TF) role for course-aligned model documentation and review.
+
 ## 1. Model Name
 
 VibeFinder 1.0
@@ -8,9 +10,9 @@ VibeFinder 1.0
 
 ## 2. Intended Use
 
-This model recommends the top 3 to 5 songs from a small catalog based on a user's preferred genre, mood, energy level, and acoustic preference.
+As a TF implementation, this model recommends the top 3 to 5 songs from a small catalog based on a user's preferred genre, mood, energy level, and acoustic preference.
 
-It is designed for classroom exploration of recommendation logic, not for production use with real users. The model assumes the user can be represented by one profile at a time and that these few features are enough to estimate taste.
+It is designed for classroom exploration and TF support of recommendation logic, not for production use with real users. The model assumes the user can be represented by one profile at a time and that these few features are enough to estimate taste.
 
 ---
 
@@ -65,7 +67,7 @@ Potential bias comes from dataset composition. If some genres, moods, or listeni
 
 ## 7. Evaluation
 
-I evaluated the recommender in three ways.
+As a TF, I evaluated the recommender in three ways.
 
 - Manual score check: I computed Sunrise City's score for the baseline profile and verified the result (about 6.28).
 - Multi-profile runs: I tested baseline pop/happy, chill lofi, and intense rock profiles and checked whether top songs matched expectation.
@@ -89,6 +91,6 @@ If I extended this project, I would:
 
 ## 9. Personal Reflection
 
-This project helped me understand that recommendation systems do not need to be complex to produce convincing outputs. A simple weighted design can already feel personalized when the chosen features line up with user expectations.
+This TF project helped me understand that recommendation systems do not need to be complex to produce convincing outputs. A simple weighted design can already feel personalized when the chosen features line up with user expectations.
 
 What surprised me was how strongly dataset size and feature coverage affect results. Even with a sensible scoring formula, missing representation in the catalog can make recommendations look biased or shallow. Building this changed how I think about real music apps: model quality is not only about algorithms, but also about data diversity, feature choices, and careful evaluation.
