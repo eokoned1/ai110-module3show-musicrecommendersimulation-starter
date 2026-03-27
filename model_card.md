@@ -1,111 +1,94 @@
 # 🎧 Model Card: Music Recommender Simulation
 
-## 1. Model Name  
+## 1. Model Name
 
-Give your model a short, descriptive name.  
-Example: **VibeFinder 1.0**  
-
----
-
-## 2. Intended Use  
-
-Describe what your recommender is designed to do and who it is for. 
-
-Prompts:  
-
-- What kind of recommendations does it generate  
-- What assumptions does it make about the user  
-- Is this for real users or classroom exploration  
+VibeFinder 1.0
 
 ---
 
-## 3. How the Model Works  
+## 2. Intended Use
 
-Explain your scoring approach in simple language.  
+This model recommends the top 3 to 5 songs from a small catalog based on a user's preferred genre, mood, energy level, and acoustic preference.
 
-Prompts:  
-
-- What features of each song are used (genre, energy, mood, etc.)  
-- What user preferences are considered  
-- How does the model turn those into a score  
-- What changes did you make from the starter logic  
-
-Avoid code here. Pretend you are explaining the idea to a friend who does not program.
+It is designed for classroom exploration of recommendation logic, not for production use with real users. The model assumes the user can be represented by one profile at a time and that these few features are enough to estimate taste.
 
 ---
 
-## 4. Data  
+## 3. How the Model Works
 
-Describe the dataset the model uses.  
+Each song has features such as genre, mood, energy, and acousticness. The user profile stores favorite genre, favorite mood, target energy, and whether the user likes acoustic songs.
 
-Prompts:  
+The model gives points for:
+- genre match (+2.0)
+- mood match (+1.5)
+- energy closeness (+2.0 x (1 - absolute difference from target energy))
+- acoustic fit (add acousticness if the user likes acoustic songs, otherwise add 1 - acousticness)
 
-- How many songs are in the catalog  
-- What genres or moods are represented  
-- Did you add or remove data  
-- Are there parts of musical taste missing in the dataset  
-
----
-
-## 5. Strengths  
-
-Where does your system seem to work well  
-
-Prompts:  
-
-- User types for which it gives reasonable results  
-- Any patterns you think your scoring captures correctly  
-- Cases where the recommendations matched your intuition  
+Songs are sorted by total score from highest to lowest, and the top k songs are returned with a plain-language explanation.
 
 ---
 
-## 6. Limitations and Bias 
+## 4. Data
 
-Where the system struggles or behaves unfairly. 
+The dataset is a small CSV catalog in data/songs.csv with 10 songs.
 
-Prompts:  
+Genres represented include pop, lofi, rock, ambient, jazz, synthwave, and indie pop. Moods include happy, chill, intense, relaxed, focused, and moody.
 
-- Features it does not consider  
-- Genres or moods that are underrepresented  
-- Cases where the system overfits to one preference  
-- Ways the scoring might unintentionally favor some users  
+I did not add or remove songs from the provided dataset. Important parts of music taste are missing, including lyrics, language, artist familiarity, release era, and cultural context.
 
 ---
 
-## 7. Evaluation  
+## 5. Strengths
 
-How you checked whether the recommender behaved as expected. 
+The recommender works well when the user profile clearly aligns with available songs in the catalog.
 
-Prompts:  
+- For a pop/happy/high-energy user, Sunrise City ranked first as expected.
+- For a chill/lofi/acoustic user, Library Rain and Midnight Coding ranked at the top and made intuitive sense.
+- For an intense/rock/high-energy/non-acoustic user, Storm Runner ranked first and Gym Hero followed as a reasonable second choice.
 
-- Which user profiles you tested  
-- What you looked for in the recommendations  
-- What surprised you  
-- Any simple tests or comparisons you ran  
-
-No need for numeric metrics unless you created some.
+Another strength is transparency: because the model is weighted and deterministic, it is easy to explain and debug.
 
 ---
 
-## 8. Future Work  
+## 6. Limitations and Bias
 
-Ideas for how you would improve the model next.  
+The model has several limitations.
 
-Prompts:  
+- It only covers a tiny catalog, so some users will get weak matches by default.
+- It ignores important factors such as lyrics, language, context, novelty, and popularity.
+- It assumes all users can be represented by one fixed profile rather than changing preferences over time.
+- Genre and mood weights are strong, which can overpower subtler taste signals.
 
-- Additional features or preferences  
-- Better ways to explain recommendations  
-- Improving diversity among the top results  
-- Handling more complex user tastes  
+Potential bias comes from dataset composition. If some genres, moods, or listening cultures are underrepresented, users from those groups receive lower quality recommendations.
 
 ---
 
-## 9. Personal Reflection  
+## 7. Evaluation
 
-A few sentences about your experience.  
+I evaluated the recommender in three ways.
 
-Prompts:  
+- Manual score check: I computed Sunrise City's score for the baseline profile and verified the result (about 6.28).
+- Multi-profile runs: I tested baseline pop/happy, chill lofi, and intense rock profiles and checked whether top songs matched expectation.
+- Unit tests: starter tests pass for recommendation ordering and explanation output.
 
-- What you learned about recommender systems  
-- Something unexpected or interesting you discovered  
-- How this changed the way you think about music recommendation apps  
+One notable result was that after the top one or two songs, score quality drops quickly due to the small catalog size.
+
+---
+
+## 8. Future Work
+
+If I extended this project, I would:
+
+- add more songs and improve balance across genres and moods
+- include extra features such as tempo range preference and lyrical themes
+- add diversity constraints so top results are not too similar
+- support feedback loops so recommendations adapt over time
+- improve explanations by showing per-feature score contributions numerically
+
+---
+
+## 9. Personal Reflection
+
+This project helped me understand that recommendation systems do not need to be complex to produce convincing outputs. A simple weighted design can already feel personalized when the chosen features line up with user expectations.
+
+What surprised me was how strongly dataset size and feature coverage affect results. Even with a sensible scoring formula, missing representation in the catalog can make recommendations look biased or shallow. Building this changed how I think about real music apps: model quality is not only about algorithms, but also about data diversity, feature choices, and careful evaluation.
