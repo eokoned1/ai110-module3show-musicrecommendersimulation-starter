@@ -164,9 +164,9 @@ This recommender is transparent and easy to inspect, but it has several limitati
 
 ## Reflection
 
-From a TF perspective, this project showed me how quickly a recommender can feel "smart" even with a simple weighted formula. By turning user preferences and song features into numbers, the system consistently produced rankings that matched intuition for different profiles. I also learned that explanation text matters because it helps verify that the model ranked songs for the reasons I expected.
-
-I also saw how bias can appear even in a small classroom simulation. If a catalog has uneven representation, users with less represented tastes get lower quality results, not because the algorithm is malicious but because the available data does not cover them well. Building and testing this as a TF reinforced that recommenders are socio-technical systems where design choices, weights, and dataset composition all shape user outcomes.
+Building this project was honestly kind of eye-opening. I went in thinking a recommender would need to be really complex to work well, but even a simple weighted formula produced results that actually felt right. Once you turn preferences and song features into numbers, the rankings just fall into place — and adding the explanation text made it easy to sanity check that the model was ranking songs for the right reasons, not just getting lucky.
+The bias piece was what stuck with me most though. I didn't expect to see it show up in something this small, but if your catalog is mostly pop songs, users who want jazz or ambient are just going to get worse recommendations. The algorithm isn't doing anything wrong — it's just working with what it has. That's a weirdly human problem dressed up as a math problem.
+Overall this made me think differently about apps like Spotify. What feels like the app "knowing you" is really just a scoring function running against a massive dataset. The magic is mostly in the data, not the algorithm.
 
 
 ---
