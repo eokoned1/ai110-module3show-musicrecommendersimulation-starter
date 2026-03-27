@@ -1,12 +1,8 @@
 # 🎵 Music Recommender Simulation
 
-Prepared in a Teaching Fellow (TF) role for Week 6 recommendation-system support and evaluation.
-
-## Project Summary
-
-As a TF, I implemented a rule-based music recommender that ranks songs from a small catalog using user taste preferences. Each song has structured features (genre, mood, energy, tempo, valence, danceability, acousticness), and each user profile specifies target preferences (favorite genre, favorite mood, target energy, and whether the user likes acoustic songs).
-
-The recommender computes a score for every song, sorts by score, and returns the top k results with short natural-language explanations. I focused on making the logic transparent for TF grading and student debugging.
+Worked through the music recommender project to get familiar with how it all fits together.
+The project is pretty straightforward once you get the logic. You build a recommender that scores songs from a small catalog based on how well they match a user's taste profile, things like their favorite genre, mood, target energy level, and whether they prefer acoustic music. Every song gets a number, you sort by that number, and return the top results with a short explanation of why each song was recommended.
+Once I got it running, the part that clicked most was seeing how even a simple scoring formula can produce results that actually feel intuitive. The explanations helped a lot too since they make it easy to verify the model is ranking songs for the right reasons.
 
 ---
 
